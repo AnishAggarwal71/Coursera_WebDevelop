@@ -1,28 +1,38 @@
 body{
 	font-family: 'Yellowtail', cursive;
-	background-image: url(Doggy.jpg);
-	background-size: cover;
+	background-color: #CCCC66;
 }
 h1{
 	font-family: 'Piedra', cursive;
 	text-align: center;
 }
+
+.s1, .s2, .s3{
+  background-color: grey solid;
+  border: 2px brown solid;
+  text-align: justify;
+  box-sizing: border-box;
+  position: relative;
+  float:left;
+  box-sizing: border-box;
+ }
+
 p{
   margin-top: 40px;
   font-weight: bold;
   font-size: 20px;
 }
 
-.s1{
+.s1 h2{
 	background-color: #FFFFFF;
 	opacity: 0.5;
 }
-.s2{
+.s2 h2{
 	background-color: black;
 	color: #FFFFCC; 
 	opacity: 0.5;
 }
-.s3{
+.s3 h2{
 	background-color: #e8c77b;
 	opacity: 0.5;
 }
@@ -30,27 +40,18 @@ p{
 h2{
 	font-family: 'Piedra', cursive;
 	text-align: right;
-	border: 2px grey solid;
+	border: 2px brown solid;
 	position: absolute;
 	width: 200px;
 	right: 0px;
 	top: 0px;
 	margin: 0px;
-	background-color: #CC6600;
 	border-bottom: 1px solid black;
 	border-left: 1px solid black;
 	padding: 5px; 
 	font-size: 25px;
-	color: black;
 }
-.s1, .s2, .s3{
-  border: 2px grey solid;
-  text-align: justify;
-  box-sizing: border-box;
-  position: relative;
-  float:left;
-  box-sizing: border-box;
-}
+
 
 @media (min-width: 992px) {
   .s1, .s2, .s3{
