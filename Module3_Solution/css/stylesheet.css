@@ -22,8 +22,8 @@ body {
   text-align: left;
   font-weight: bold;
   text-shadow: 1px 1px 1px #222;
-  margin-top: 0;
-  margin-bottom: 0;
+  padding-left: 0px; 
+  margin: 0px;
   line-height: .75;
 }
 .navbar-brand a:hover, .navbar-brand a:focus {
@@ -70,10 +70,12 @@ h6{
 p{
   text-size: 18px;
 }
-.item{
-  height: 1000px;
+div div#item-chicken,
+div div#item-beef,
+div div#item-shushi{
   background-color: gray;
-  padding:5px 20px;
-  margin: 20px 50px 20px 50px;
-  text-align: justify;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 60px;
+  box-shadow: 5px 10px black;
 }
