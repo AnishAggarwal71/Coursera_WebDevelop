@@ -75,16 +75,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // random category into the home HTML snippet, and then insert that snippet into our
 // main page (index.html).
 //
-// TODO: STEP 1: Substitute [...] below with the *value* of the function buildAndShowHomeHTML,
+// TODO: STEP 1: Substitute [...] below with the *value* of the function buildAndShowHomeHTML, 
 // so it can be called when server responds with the categories data.
 
 // *** start ***
 // On first load, show home view
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
-  allCategoriesUrl,
-  [...], // ***** <---- TODO: STEP 1: Substitute [...] ******
-  true); // Explicitly setting the flag to get JSON from server processed into an object literal
+  allCategoriesUrl, 
+  buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
+  true); // Explicitely setting the flag to get JSON from server processed into an object literal
 });
 // *** finish **
 
@@ -92,7 +92,6 @@ $ajaxUtils.sendGetRequest(
 // Builds HTML for the home page based on categories array
 // returned from the server.
 function buildAndShowHomeHTML (categories) {
-
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
@@ -101,8 +100,8 @@ function buildAndShowHomeHTML (categories) {
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
-      // var chosenCategoryShortName = ....
-
+      
+      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;      
 
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.
@@ -115,14 +114,17 @@ function buildAndShowHomeHTML (categories) {
       // Hint: you need to surround the chosen category short name with something before inserting
       // it into the home html snippet.
       //
-      // var homeHtmlToInsertIntoMainPage = ....
 
+      chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
+      
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
       // Use the existing insertHtml function for that purpose. Look through this code for an example
-      // of how to do that.
+      // of how to do that. 
       // ....
 
+      insertHtml("#main-content", homeHtmlToInsertIntoMainPage);      
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
@@ -188,7 +190,6 @@ function buildAndShowCategoriesHTML (categories) {
 function buildCategoriesViewHtml(categories,
                                  categoriesTitleHtml,
                                  categoryHtml) {
-
   var finalHtml = categoriesTitleHtml;
   finalHtml += "<section class='row'>";
 
@@ -201,7 +202,7 @@ function buildCategoriesViewHtml(categories,
     html =
       insertProperty(html, "name", name);
     html =
-      insertProperty(html,
+      insertProperty(html, 
                      "short_name",
                      short_name);
     finalHtml += html;
@@ -226,7 +227,7 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
         function (menuItemHtml) {
           // Switch CSS class active to menu button
           switchMenuToActive();
-
+          
           var menuItemsViewHtml =
             buildMenuItemsViewHtml(categoryMenuItems,
                                    menuItemsTitleHtml,
@@ -244,7 +245,7 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
 function buildMenuItemsViewHtml(categoryMenuItems,
                                 menuItemsTitleHtml,
                                 menuItemHtml) {
-
+  
   menuItemsTitleHtml =
     insertProperty(menuItemsTitleHtml,
                    "name",
@@ -272,12 +273,12 @@ function buildMenuItemsViewHtml(categoryMenuItems,
     html =
       insertItemPrice(html,
                       "price_small",
-                      menuItems[i].price_small);
+                      menuItems[i].price_small); 
     html =
       insertItemPortionName(html,
                             "small_portion_name",
                             menuItems[i].small_portion_name);
-    html =
+    html = 
       insertItemPrice(html,
                       "price_large",
                       menuItems[i].price_large);
@@ -286,7 +287,7 @@ function buildMenuItemsViewHtml(categoryMenuItems,
                             "large_portion_name",
                             menuItems[i].large_portion_name);
     html =
-      insertProperty(html,
+      insertProperty(html, 
                      "name",
                      menuItems[i].name);
     html =
@@ -295,8 +296,8 @@ function buildMenuItemsViewHtml(categoryMenuItems,
                      menuItems[i].description);
 
     // Add clearfix after every second menu item
-    if (i % 2 !== 0) {
-      html +=
+    if (i % 2 != 0) {
+      html += 
         "<div class='clearfix visible-lg-block visible-md-block'></div>";
     }
 
@@ -314,7 +315,7 @@ function insertItemPrice(html,
                          priceValue) {
   // If not specified, replace with empty string
   if (!priceValue) {
-    return insertProperty(html, pricePropName, "");
+    return insertProperty(html, pricePropName, "");;
   }
 
   priceValue = "$" + priceValue.toFixed(2);
